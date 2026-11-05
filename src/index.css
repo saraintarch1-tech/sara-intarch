@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Jost:wght@200;300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 45% 94%;
+    --foreground: 23 16% 16%;
+    --card: 40 52% 97%;
+    --card-foreground: 23 16% 16%;
+    --popover: 40 52% 97%;
+    --popover-foreground: 23 16% 16%;
+    --primary: 23 16% 16%;
+    --primary-foreground: 36 45% 94%;
+    --secondary: 37 40% 85%;
+    --secondary-foreground: 23 16% 16%;
+    --muted: 37 40% 85%;
+    --muted-foreground: 27 7% 37%;
+    --accent: 37 40% 85%;
+    --accent-foreground: 23 16% 16%;
+    --destructive: 0 48% 38%;
+    --destructive-foreground: 36 45% 94%;
+    --border: 34 22% 84%;
+    --input: 34 22% 82%;
+    --ring: 27 7% 40%;
+    --radius: 0rem;
+
+    --ink: 23 16% 16%;
+    --ink-soft: 27 7% 37%;
+    --ivory: 36 45% 94%;
+    --sand: 37 40% 85%;
+    --taupe: 31 17% 59%;
+    --mocha: 23 13% 27%;
+    --stone: 29 8% 51%;
+
+    --brand-accent: 23 13% 27%;
+    --font-display: "Italiana", "Cormorant Garamond", Georgia, serif;
+    --font-body: "Jost", "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-mono: "Jost", ui-monospace, monospace;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  ::selection {
+    background: #3a302a;
+    color: #f8f3ec;
+  }
+
+  input, textarea, select, button {
+    font-family: inherit;
+    letter-spacing: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .caps {
+    @apply uppercase;
+    font-size: 10px;
+    letter-spacing: 0.34em;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .caps-sm {
+    @apply uppercase;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .link-line {
+    position: relative;
+  }
+
+  .link-line::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .link-line:hover::after {
+    transform: scaleX(1);
+  }
+
+  .link-line-static::after {
+    transform: scaleX(1);
+    opacity: 0.3;
+  }
+
+  .link-line-static:hover::after {
+    opacity: 1;
+  }
+
+  .field-line {
+    @apply w-full border-0 border-b border-ink/20 bg-transparent px-0 py-3 text-sm text-ink placeholder:text-stone/70 focus:border-ink focus:outline-none focus:ring-0;
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="SARA INTARCH">
+  <rect width="100" height="100" fill="#F7F2EA" />
+  <g fill="none" stroke="#2F2722" stroke-width="4" stroke-linecap="square">
+    <path d="M20 86V48a30 30 0 0 1 60 0v38" />
+    <path d="M50 12v10" opacity="0.55" />
+    <path d="M60 32.5C60 29.2 54.2 27.5 49.5 27.5C43.7 27.5 39.4 29.6 39.4 32.4C39.4 35.2 43.4 36.4 48.9 37.4C55.2 38.6 60.6 39.9 60.6 43.1C60.6 46.2 55.6 48.3 49.7 48.3C44 48.3 39.1 46.6 38.6 43.1" />
+    <path d="M38.5 52v25" opacity="0.92" />
+    <path d="M61.5 52v25" opacity="0.92" />
+    <path d="M38.5 64.5h23" opacity="0.92" />
+  </g>
+</svg>
