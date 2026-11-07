@@ -34,8 +34,21 @@ export default function Navbar({ content, tone = "dark" }) {
     };
   }, [open]);
 
-  const links = (content?.nav_items?.length ? content.nav_items : FALLBACK_LINKS).filter(
-    (item) => item.visible !== false
+  const links = (content?.nav_items?.length ? content.nav_items : FALLBACK_LINKS)
+  .filter((item) => item.visible !== false)
+  .map((item) => {
+    const label = item.label?.trim().toLowerCase();
+
+    if (label === "services") {
+      return { ...item, path: "/#services" };
+    }
+
+    if (label === "about") {
+      return { ...item, path: "/#about" };
+    }
+
+    return item;
+  });
   );
   const light = tone === "light" && !scrolled && !open;
 
