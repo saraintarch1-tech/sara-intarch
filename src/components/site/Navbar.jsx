@@ -49,7 +49,6 @@ export default function Navbar({ content, tone = "dark" }) {
 
     return item;
   });
-  );
   const light = tone === "light" && !scrolled && !open;
 
   return (
