@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
 
@@ -16,17 +17,45 @@ export default function ScrollToTop() {
   const navigationType = useNavigationType();
 
   useEffect(() => {
-    if (navigationType === "POP") return;
+    let attempts = 0;
+    let timer;
 
-    if (hash) {
-      const id = getHashId(hash);
-      const timer = window.setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 50);
-      return () => window.clearTimeout(timer);
-    }
+    const scrollToTarget = () => {
+      if (hash) {
+        const id = getHashId(hash);
+        const target = document.getElementById(id);
 
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        if (target) {
+          target.scrollIntoView({
+            behavior: "auto",
+            block: "start",
+          });
+          return true;
+        }
+
+        return false;
+      }
+
+      if (navigationType !== "POP") {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+
+      return true;
+    };
+
+    const tryScroll = () => {
+      attempts++;
+
+      if (scrollToTarget() || attempts >= 30) {
+        return;
+      }
+
+      timer = window.setTimeout(tryScroll, 100);
+    };
+
+    timer = window.setTimeout(tryScroll, 100);
+
+    return () => window.clearTimeout(timer);
   }, [pathname, hash, navigationType]);
 
   return null;
